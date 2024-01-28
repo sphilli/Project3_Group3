@@ -105,7 +105,7 @@ function makeBar(data) {
 
   // Trace for the Data
   let trace = {
-    x: data.bar_data.map(row => row.num_chipotles).reverse(),
+    x: data.bar_data.map(row => row.num_studios).reverse(),
     y: data.bar_data.map(row => row.loc_display).reverse(),
     type: "bar",
     orientation: "h"
@@ -116,7 +116,7 @@ function makeBar(data) {
 
   // Apply a title to the layout
   let layout = {
-    title: `Top 10 Cities with Chipotle`,
+    title: `Top 10 Gaming Studios`,
     margin: { l: 200 }}
 
   // Render the plot to the div tag with id "plot"

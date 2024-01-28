@@ -5,21 +5,21 @@ import pandas as pd
 class SQLHelper():
 
     def __init__(self):
-        self.engine = create_engine("sqlite:///Resources/chipotle.sqlite")
+        self.engine = create_engine("sqlite:///Resources/merged_df.sqlite")
 
-    def getMapData(self, state):
-        # allow the user to select ALL or a specific state
-        if state == "All":
+    def getMapData(self, Country):
+        # allow the user to select ALL or a specific Country
+        if Country == "All":
             where_clause = "1=1"
         else:
-            where_clause = f"state = '{state}'"
+            where_clause = f"Country = '{Country}'"
 
         # USE RAW SQL
         query = f"""
                 SELECT
                     *
                 FROM
-                    chipotle
+                    merged_df
                 WHERE
                     {where_clause};
         """
@@ -29,29 +29,26 @@ class SQLHelper():
 
         return(data_map)
 
-    def getBarData(self, state):
+    def getBarData(self, Country):
         # allow the user to select ALL or a specific state
-        if state == "All":
+        if Country == "All":
             where_clause = "1=1"
         else:
-            where_clause = f"state = '{state}'"
+            where_clause = f"Country = '{Country}'"
 
         query = f"""
-            SELECT
-                location,
-                state,
-                location || ', ' || state as loc_display,
-                count(*) as num_chipotles
-            FROM
-                chipotle
-            WHERE
-                {where_clause}
-            GROUP BY
-                location,
-                state
-            ORDER BY
-                num_chipotles desc
-            LIMIT 10;
+                SELECT
+                    Country,
+                    count(*) as num_studios
+                FROM
+                    merged_df
+                WHERE
+                    {where_clause}
+                GROUP BY
+                    Country
+                ORDER BY
+                    num_studios desc
+                LIMIT 10;
         """
 
         df_bar = pd.read_sql(text(query), con=self.engine)
