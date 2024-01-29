@@ -102,6 +102,18 @@
                         <option value="UK">UK</option>
                         <option value="Ukraine">Ukraine</option>
                     </select>
+                    <script>
+                      function showSelectedOptions() {
+                        var dropdown = document.getElementById("dropdown");
+                        var selectedOption = dropdown.options[dropdown.selectedIndex].value;
+                        
+                        if (selectedOption === "all") {
+                          for (var i = 1; i < dropdown.options.length; i++) {
+                            dropdown.options[i].selected = true;
+                          }
+                        }
+                      }
+                      </script>
                 </div>
             </div>
         </div>

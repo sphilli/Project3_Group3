@@ -1,8 +1,13 @@
+
 // select the dropdown
-let dropdown = d3.select("#dropdown");
+const dropdown = d3.selectAll("#dropdown")
+.attr("selected", "selected");
 
 // add an event listener for a CHANGE
 dropdown.on("change", function () {
+  const selectedValue = dropdown.value;
+
+
   //  console.log("Event Listener heard!! YAY!");
 
   // on change, do work
@@ -77,7 +82,7 @@ function makeMap(data) {
 
   // Create a map object, and set the default layers.
   let myMap = L.map("map", {
-    center: [32.7767, -96.7970],
+    center: [54.5260, 15.2551],
     zoom: 4,
     layers: [street, markerLayer]
   });
@@ -101,28 +106,28 @@ function makeMap(data) {
   L.control.layers(baseMaps, overlayMaps).addTo(myMap);
 }
 
-function makeBar(data) {
+// function makeBar(data) {
 
-  // Trace for the Data
-  let trace = {
-    x: data.bar_data.map(row => row.num_studios).reverse(),
-    y: data.bar_data.map(row => row.loc_display).reverse(),
-    type: "bar",
-    orientation: "h"
-  }
+//   // Trace for the Data
+//   let trace = {
+//     x: data.bar_data.map(row => row.num_studios).reverse(),
+//     y: data.bar_data.map(row => row.loc_display).reverse(),
+//     type: "bar",
+//     orientation: "h"
+//   }
 
-  // Data array
-  let traces = [trace];
+//   // Data array
+//   let traces = [trace];
 
-  // Apply a title to the layout
-  let layout = {
-    title: `Top 10 Gaming Studios`,
-    margin: { l: 200 }}
+//   // Apply a title to the layout
+//   let layout = {
+//     title: `Top 10 Gaming Studios`,
+//     margin: { l: 200 }}
 
-  // Render the plot to the div tag with id "plot"
-  Plotly.newPlot("bar", traces, layout);
+//   // Render the plot to the div tag with id "plot"
+//   Plotly.newPlot("bar", traces, layout);
 
-}
+// }
 
-// INITIALIZE plot on page load
-doWork();
+// // INITIALIZE plot on page load
+// doWork();

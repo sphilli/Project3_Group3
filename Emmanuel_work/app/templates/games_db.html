@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css">
 
     <!-- Our CSS -->
-    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="static\css\game_style.css">
 
   </head>
   <body>
@@ -54,80 +54,9 @@
         </div>
       </nav>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <!-- This is where the dropdowns and buttons will live -->
-                <h1>Welcome to our Gaming Studios Dashboard!</h1>
-                <div id="filters">
-                  <h3>Select Studio</h3>
-                    <select id="dropdown">
-                        <option value="All" selected>All</option>
-                        <option value="Austria">Austria</option>
-                        <option value="Azerbaijan">Azerbaijan</option>
-                        <option value="Belarus">Belarus</option>
-                        <option value="Belgium">Belgium</option>
-                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-                        <option value="Bulgaria">Bulgaria</option>
-                        <option value="Croatia">Croatia</option>
-                        <option value="Czech Republic">Czech Republic</option>
-                        <option value="Denmark">Denmark</option>
-                        <option value="Estonia">Estonia</option>
-                        <option value="Finland">Finland</option>
-                        <option value="France">France</option>
-                        <option value="Germany">Germany</option>
-                        <option value="Greece">Greece</option>
-                        <option value="Hungary">Hungary</option>
-                        <option value="Iceland">Iceland</option>
-                        <option value="Ireland">Ireland</option>
-                        <option value="Italy">Italy</option>
-                        <option value="Kazakhstan">Kazakhstan</option>
-                        <option value="Latvia">Latvia</option>
-                        <option value="Lithuania">Lithuania</option>
-                        <option value="Macedonia">Macedonia</option>
-                        <option value="Malta">Malta</option>
-                        <option value="Moldavia">Moldavia</option>
-                        <option value="Netherlands">Netherlands</option>
-                        <option value="Norway">Norway</option>
-                        <option value="Poland">Poland</option>
-                        <option value="Portugal">Portugal</option>
-                        <option value="Romania">Romania</option>
-                        <option value="Russia">Russia</option>
-                        <option value="Serbia">Serbia</option>
-                        <option value="Slovenia">Slovenia</option>
-                        <option value="Spain">Spain</option>
-                        <option value="Sweden">Sweden</option>
-                        <option value="Switzerland">Switzerland</option>
-                        <option value="Turkey">Turkey</option>
-                        <option value="UK">UK</option>
-                        <option value="Ukraine">Ukraine</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <!-- This is where the plotly plots will go -->
-            <div class="col-md-6">
-                <div id="bubble"></div>
-            </div>
-            <div class="col-md-6">
-                <div id="bar"></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <!-- This is where the map will go -->
-                <div id="map_container"></div>
-            </div>
-        </div>
-    </div>
-
     <!-- Our JavaScript -->
-    <script type="text/javascript" src="static/js/app.js"></script>
-
-    <!-- Leaflet heatmap plugin-->
-    <script type="text/javascript" src="static/js/leaflet-heat.js"></script>
-
+    <canvas id="c"></canvas>
+    <script type="text/javascript" src="static\js\game_app.js"></script>
+  
   </body>
 </html>
