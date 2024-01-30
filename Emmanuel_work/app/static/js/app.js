@@ -81,8 +81,8 @@ function makeMap(data) {
 
   // Create a map object, and set the default layers.
   let myMap = L.map("map", {
-    center: [54.0121429819674, 55.89202241748511],
-    zoom: 3.55,
+    center: [53.649024, 44.290197],
+    zoom: 3,
     layers: [street, markerLayer]
   });
 
@@ -106,13 +106,13 @@ function makeMap(data) {
 }
 
 // create the textbox
-function textbox(person){
+function textbox(data){
   var textbox = document.getElementsByClassName("card card-primary");
-    textbox.value = person_data.otu_ids;
-    for (let i = 0; i < data.names.length; i++){
-      let name = data.names[i];
-      dropdown.append("option").text(name);
-      textbox(person_data)
+    textbox.value = data.Studio;
+    for (let i = 0; i < data.Studio.length; i++){
+      let Studio = data.Studio[i];
+      dropdown.append("option").text(Studio);
+      textbox(data)
     }
   }
 
@@ -131,8 +131,16 @@ function makeBar(data) {
 
   // Apply a title to the layout
   let layout = {
-    title: `Top 10 Gaming Studios`,
-    margin: { l: 200 }}
+    title: `Top 10 Gaming Studio Locations`,
+    margin: { l: 200 },
+    xaxis: {
+      title: "Number of Studios"
+    },
+    yaxis: {
+      title: "Country"
+    }
+  }
+    
 
   // Render the plot to the div tag with id "plot"
   Plotly.newPlot("bar", traces, layout);

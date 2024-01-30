@@ -57,3 +57,27 @@ class SQLHelper():
         data_bar = df_bar.to_dict(orient="records")
 
         return(data_bar)
+    
+    def getBoxData(self, Country):
+    # allow the user to select ALL or a specific Country
+        if Country == "All":
+            where_clause = "1=1"
+        else:
+            where_clause = f"Country = '{Country}'"
+
+        # USE RAW SQL
+        query = f"""
+            SELECT
+                *
+            FROM
+                merged_df
+            WHERE
+                {where_clause}
+                and latitude is not null
+                and longitude is not null
+        """
+
+        df_map = pd.read_sql(text(query), con=self.engine)
+        data_map = df_map.to_dict(orient="records")
+
+        return(data_box)
