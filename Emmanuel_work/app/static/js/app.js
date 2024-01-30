@@ -78,8 +78,8 @@ function makeMap(data) {
 
   // Create a map object, and set the default layers.
   let myMap = L.map("map", {
-    center: [54.0121429819674, 55.89202241748511],
-    zoom: 3.55,
+    center: [53.649024, 44.290197],
+    zoom: 3,
     layers: [street, markerLayer]
   });
 
@@ -102,7 +102,6 @@ function makeMap(data) {
   L.control.layers(baseMaps, overlayMaps).addTo(myMap);
 }
 
-<<<<<<< Updated upstream
 // create the textbox
 function textbox(person){
   var textbox = document.getElementsByClassName("card card-primary");
@@ -114,8 +113,6 @@ function textbox(person){
     }
   }
 
-=======
->>>>>>> Stashed changes
 function makeBar(data) {
 
   // Trace for the Data
