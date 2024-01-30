@@ -1,3 +1,4 @@
+//Code for the matrix digital background
 // geting canvas by Boujjou Achraf
 var c = document.getElementById("c");
 var ctx = c.getContext("2d");
@@ -49,3 +50,4 @@ function draw()
 }
 
 setInterval(draw, 35);
+//---------------------------------------End of Matrix -----------------------------------------------------------

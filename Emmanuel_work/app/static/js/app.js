@@ -1,11 +1,10 @@
 
 // select the dropdown
-const dropdown = d3.selectAll("#dropdown")
-.attr("selected", "selected");
+let dropdown = d3.selectAll("#dropdown").attr("selected", "selected");
 
 // add an event listener for a CHANGE
 dropdown.on("change", function () {
-  const selectedValue = dropdown.value;
+  let selectedValue = dropdown.value;
 
 
   //  console.log("Event Listener heard!! YAY!");
@@ -69,7 +68,7 @@ function makeMap(data) {
     let location = [latitude, longitude];
 
     // Add a new marker to the cluster group, and bind a popup.
-    let marker = L.marker(location).bindPopup(`<h3>${row.address}</h3>`);
+    let marker = L.marker(location).bindPopup(`<h3>${row.Studio}</h3>`);
     markerLayer.addLayer(marker);
 
     // for the heatmap
@@ -82,8 +81,8 @@ function makeMap(data) {
 
   // Create a map object, and set the default layers.
   let myMap = L.map("map", {
-    center: [54.5260, 15.2551],
-    zoom: 4,
+    center: [54.0121429819674, 55.89202241748511],
+    zoom: 3.55,
     layers: [street, markerLayer]
   });
 
@@ -106,28 +105,39 @@ function makeMap(data) {
   L.control.layers(baseMaps, overlayMaps).addTo(myMap);
 }
 
-// function makeBar(data) {
+// create the textbox
+function textbox(person){
+  var textbox = document.getElementsByClassName("card card-primary");
+    textbox.value = person_data.otu_ids;
+    for (let i = 0; i < data.names.length; i++){
+      let name = data.names[i];
+      dropdown.append("option").text(name);
+      textbox(person_data)
+    }
+  }
 
-//   // Trace for the Data
-//   let trace = {
-//     x: data.bar_data.map(row => row.num_studios).reverse(),
-//     y: data.bar_data.map(row => row.loc_display).reverse(),
-//     type: "bar",
-//     orientation: "h"
-//   }
+function makeBar(data) {
 
-//   // Data array
-//   let traces = [trace];
+  // Trace for the Data
+  let trace = {
+    x: data.bar_data.map(row => row.num_studios).reverse(),
+    y: data.bar_data.map(row => row.Country).reverse(),
+    type: "bar",
+    orientation: "h"
+  }
 
-//   // Apply a title to the layout
-//   let layout = {
-//     title: `Top 10 Gaming Studios`,
-//     margin: { l: 200 }}
+  // Data array
+  let traces = [trace];
 
-//   // Render the plot to the div tag with id "plot"
-//   Plotly.newPlot("bar", traces, layout);
+  // Apply a title to the layout
+  let layout = {
+    title: `Top 10 Gaming Studios`,
+    margin: { l: 200 }}
 
-// }
+  // Render the plot to the div tag with id "plot"
+  Plotly.newPlot("bar", traces, layout);
 
-// // INITIALIZE plot on page load
-// doWork();
+}
+
+// INITIALIZE plot on page load
+doWork();

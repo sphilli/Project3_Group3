@@ -102,22 +102,16 @@
                         <option value="UK">UK</option>
                         <option value="Ukraine">Ukraine</option>
                     </select>
-                    <script>
-                      function showSelectedOptions() {
-                        var dropdown = document.getElementById("dropdown");
-                        var selectedOption = dropdown.options[dropdown.selectedIndex].value;
-                        
-                        if (selectedOption === "all") {
-                          for (var i = 1; i < dropdown.options.length; i++) {
-                            dropdown.options[i].selected = true;
-                          }
-                        }
-                      }
-                      </script>
                 </div>
             </div>
         </div>
         <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- This is where the map will go -->
+                <div id="map_container"></div>
+            </div>
+        </div>        
         <div class="row">
             <!-- This is where the plotly plots will go -->
             <div class="col-md-6">
@@ -127,12 +121,17 @@
                 <div id="bar"></div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <!-- This is where the map will go -->
-                <div id="map_container"></div>
-            </div>
+        <!--This is where the textbox -->
+        <div class="col-md-6">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h4 class="card-title">Studio Info</h4>
+            <select id="selDataset" onchange="textbox(this.value)"></select>
+          </div>
+          <div id="sample-metadata" class="card-body"></div>
         </div>
+      </div>
+
     </div>
 
     <!-- Our JavaScript -->
