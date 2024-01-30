@@ -56,9 +56,13 @@ class SQLHelper():
         df_bar = pd.read_sql(text(query), con=self.engine)
         data_bar = df_bar.to_dict(orient="records")
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
         return(data_bar)
 =======
         return(data_bar)
     
 >>>>>>> Stashed changes
+=======
+        return(data_bar)
+>>>>>>> parent of 9f961a8 (Changed map)
