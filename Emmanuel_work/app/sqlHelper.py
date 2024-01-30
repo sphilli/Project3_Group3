@@ -46,6 +46,8 @@ class SQLHelper():
                     merged_df
                 WHERE
                     {where_clause}
+                    and latitude is not null
+                    and longitude is not null
                 GROUP BY
                     Country
                 ORDER BY

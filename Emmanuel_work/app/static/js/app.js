@@ -23,6 +23,8 @@ function doWork() {
 
     makeMap(data);
     makeBar(data);
+    //make metadata chart
+    makeMeta(data);
   });
 }
 
@@ -102,16 +104,6 @@ function makeMap(data) {
   L.control.layers(baseMaps, overlayMaps).addTo(myMap);
 }
 
-// create the textbox
-function textbox(person){
-  var textbox = document.getElementsByClassName("card card-primary");
-    textbox.value = person_data.otu_ids;
-    for (let i = 0; i < data.names.length; i++){
-      let name = data.names[i];
-      dropdown.append("option").text(name);
-      textbox(person_data)
-    }
-  }
 
 function makeBar(data) {
 
@@ -121,7 +113,7 @@ function makeBar(data) {
     y: data.bar_data.map(row => row.Country).reverse(),
     type: "bar",
     orientation: "h"
-  }
+  };
 
   // Data array
   let traces = [trace];
@@ -129,11 +121,23 @@ function makeBar(data) {
   // Apply a title to the layout
   let layout = {
     title: `Top 10 Gaming Studios`,
-    margin: { l: 200 }}
+    margin: { l: 200 }};
 
   // Render the plot to the div tag with id "plot"
   Plotly.newPlot("bar", traces, layout);
 
+}
+
+function makeMeta(data) {
+  let panel = d3.select("#sample-metadata");
+  panel.html("");
+
+  //loop through each key in the dictionary 
+  let keys = Object.keys(data.map_data);
+  for (let i = 0; i < keys.length; i++){
+    let key = keys[i];
+    panel.append("p").text(`${key}: ${data.map_data[key]}`);
+  }
 }
 
 // INITIALIZE plot on page load
