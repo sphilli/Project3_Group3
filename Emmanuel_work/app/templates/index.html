@@ -107,16 +107,10 @@
         </div>
         <hr>
         <div class="row">
-          <div class="col">
-            <!--Place holder for a centralized map-->
-          </div>
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <!-- This is where the map will go -->
                 <div id="map_container"></div>
             </div>
-            <div class="col">
-            <!--Place holder for a centralized map-->
-          </div>
         </div>        
         <div class="row">
             <!-- This is where the plotly plots will go -->
@@ -127,21 +121,15 @@
                 <div id="bar"></div>
             </div>
         </div>
-<!--This is where the textbox will go -->
-<div class="col-md-6">
-  <div class="card card-primary">
-    <div class="card-header">
-      <h4 class="card-title">Studio Info</h4>
-      <select id="selDataset" onchange="textbox(this.value)"></select>
-    </div>
-    <div id="sample-metadata" class="card-body">
-      <h5>Studio Name:</h5>
-      <input type="text" id="studio" readonly>
-      <h5>Country Location:</h5>
-      <input type="text" id="Location" readonly>
-    </div>
-  </div>
-</div>
+        <!--This is where the textbox -->
+        <div class="col-md-6">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h4 class="card-title">Studio Info</h4>
+            <select id="selDataset" onchange="textbox(this.value)"></select>
+          </div>
+          <div id="sample-metadata" class="card-body"></div>
+        </div>
       </div>
 
     </div>

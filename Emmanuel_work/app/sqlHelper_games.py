@@ -5,7 +5,7 @@ import pandas as pd
 class SQLHelper():
 
     def __init__(self):
-        self.engine = create_engine("sqlite:///Resources/video_games.sqlite")
+        self.engine = create_engine("sqlite:///Resources/games.sqlite")
 
     def getMapData(self, Country):
         # allow the user to select ALL or a specific Country
@@ -21,9 +21,7 @@ class SQLHelper():
                 FROM
                     merged_df
                 WHERE
-                    {where_clause}
-                    and latitude is not null
-                    and longitude is not null
+                    {where_clause};
         """
 
         df_map = pd.read_sql(text(query), con=self.engine)
