@@ -5,10 +5,7 @@ let dropdown = d3.selectAll("#dropdown").attr("selected", "selected");
 // add an event listener for a CHANGE
 dropdown.on("change", function () {
   let selectedValue = dropdown.value;
-
-
-  //  console.log("Event Listener heard!! YAY!");
-
+  
   // on change, do work
   doWork();
 });
@@ -105,6 +102,7 @@ function makeMap(data) {
   L.control.layers(baseMaps, overlayMaps).addTo(myMap);
 }
 
+<<<<<<< Updated upstream
 // create the textbox
 function textbox(person){
   var textbox = document.getElementsByClassName("card card-primary");
@@ -116,6 +114,8 @@ function textbox(person){
     }
   }
 
+=======
+>>>>>>> Stashed changes
 function makeBar(data) {
 
   // Trace for the Data
