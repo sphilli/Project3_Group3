@@ -80,8 +80,8 @@ function makeMap(data) {
 
   // Create a map object, and set the default layers.
   let myMap = L.map("map", {
-    center: [53.649024, 44.290197],
-    zoom: 3,
+    center: [53.649024, 41.290197],
+    zoom: 3.75,
     layers: [street, markerLayer]
   });
 
