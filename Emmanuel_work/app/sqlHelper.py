@@ -61,3 +61,95 @@ class SQLHelper():
 
         return(data_bar)
 
+
+    def getBarData1(self, Category):
+                # allow the user to select the most played title 
+        if Category == "genre":
+            query = f"""
+                    SELECT
+                        Genres as labels,
+                        count(*) as "values"
+                    FROM
+                        games
+                    GROUP BY
+                        Genres
+                    ORDER BY
+                        "values" desc
+                    LIMIT 10;
+                """
+        elif Category == "rating":
+            query = f"""
+                    SELECT
+                        Title as labels,
+                        Rating as "values"
+                    FROM
+                        games
+                    GROUP BY
+                        Title
+                    ORDER BY
+                        "values" desc
+                    LIMIT 10;
+                """
+        else:
+            query =  f"""
+                    SELECT
+                        Title as labels,
+                        Plays as "values"
+                    FROM
+                        games
+                    GROUP BY
+                        Title
+                    ORDER BY
+                        "values" desc
+                    LIMIT 10;
+                """
+
+        df2 = pd.read_sql(text(query), con=self.engine)
+        bar1_data = df2.to_dict(orient="records")
+        return(bar1_data)
+
+    def getBarData2(self, Category):
+                # allow the user to select the most played title 
+        if Category == "genre":
+            query = f"""
+                    SELECT
+                        Genres as labels,
+                        count(*) as "values"
+                    FROM
+                        games
+                    GROUP BY
+                        Genres
+                    ORDER BY
+                        "values" asc
+                    LIMIT 10;
+                """
+        elif Category == "rating":
+            query = f"""
+                    SELECT
+                        Title as labels,
+                        Rating as "values"
+                    FROM
+                        games
+                    GROUP BY
+                        Title
+                    ORDER BY
+                        "values" asc
+                    LIMIT 10;
+                """
+        else:
+            query =  f"""
+                    SELECT
+                        Title as labels,
+                        Plays as "values"
+                    FROM
+                        games
+                    GROUP BY
+                        Title
+                    ORDER BY
+                        "values" asc
+                    LIMIT 10;
+                """
+
+        df3 = pd.read_sql(text(query), con=self.engine)
+        bar2_data = df3.to_dict(orient="records")
+        return(bar2_data)
