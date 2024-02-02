@@ -120,7 +120,7 @@ function makeBar(data) {
 
   // Apply a title to the layout
   let layout = {
-    title: `Top 10 Gaming Studios`,
+    title: `Gaming Studios Per Country`,
     margin: { l: 200 }};
 
   // Render the plot to the div tag with id "plot"
@@ -133,10 +133,14 @@ function makeMeta(data) {
   panel.html("");
 
   //loop through each key in the dictionary 
-  let keys = Object.keys(data.map_data);
-  for (let i = 0; i < keys.length; i++){
-    let key = keys[i];
-    panel.append("p").text(`${key}: ${data.map_data[key]}`);
+ 
+  for (let i = 0; i < 5; i++){
+    let row = data.map_data[i];
+    panel.append("p").text(`Studio: ${row["Studio"]}`);
+    panel.append("p").text(`Country: ${row["Country"]}`);
+    panel.append("p").html(`Website: <a href="${row["Website"]}" target = "_blank">${row["Website"]}</a>`);
+    panel.append("hr")
+
   }
 }
 

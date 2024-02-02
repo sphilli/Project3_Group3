@@ -5,7 +5,7 @@ import pandas as pd
 class SQLHelper():
 
     def __init__(self):
-        self.engine = create_engine("sqlite:///Resources/video_games.sqlite")
+        self.engine = create_engine("sqlite:///Resources/video_games_final.sqlite")
 
     def getMapData(self, Country):
         # allow the user to select ALL or a specific Country
@@ -32,11 +32,12 @@ class SQLHelper():
         return(data_map)
 
     def getBarData(self, Country):
-        # allow the user to select ALL or a specific state
+        # allow the user to select ALL or a specific Country
         if Country == "All":
             where_clause = "1=1"
         else:
             where_clause = f"Country = '{Country}'"
+
 
         query = f"""
                 SELECT
@@ -58,5 +59,5 @@ class SQLHelper():
         df_bar = pd.read_sql(text(query), con=self.engine)
         data_bar = df_bar.to_dict(orient="records")
 
-
+        return(data_bar)
 
