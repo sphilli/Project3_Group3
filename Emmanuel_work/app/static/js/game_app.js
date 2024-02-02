@@ -1,58 +1,3 @@
-// //Code for the matrix digital background
-// // geting canvas by Boujjou Achraf
-// var c = document.getElementById("c");
-// var ctx = c.getContext("2d");
-
-// //making the canvas full screen
-// c.height = window.innerHeight;
-// c.width = window.innerWidth;
-
-// //chinese characters - taken from the unicode charset
-// var matrix = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
-// //converting the string into an array of single characters
-// matrix = matrix.split("");
-
-// var font_size = 10;
-// var columns = c.width/font_size; //number of columns for the rain
-// //an array of drops - one per column
-// var drops = [];
-// //x below is the x coordinate
-// //1 = y co-ordinate of the drop(same for every drop initially)
-// for(var x = 0; x < columns; x++)
-//     drops[x] = 1; 
-
-// //drawing the characters
-// function draw()
-// {
-//     //Black BG for the canvas
-//     //translucent BG to show trail
-//     ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
-//     ctx.fillRect(0, 0, c.width, c.height);
-
-//     ctx.fillStyle = "#f4427d";//green text
-//     ctx.font = font_size + "px arial";
-//     //looping over drops
-//     for(var i = 0; i < drops.length; i++)
-//     {
-//         //a random chinese character to print
-//         var text = matrix[Math.floor(Math.random()*matrix.length)];
-//         //x = i*font_size, y = value of drops[i]*font_size
-//         ctx.fillText(text, i*font_size, drops[i]*font_size);
-
-//         //sending the drop back to the top randomly after it has crossed the screen
-//         //adding a randomness to the reset to make the drops scattered on the Y axis
-//         if(drops[i]*font_size > c.height && Math.random() > 0.975)
-//             drops[i] = 0;
-
-//         //incrementing Y coordinate
-//         drops[i]++;
-//     }
-// }
-
-// setInterval(draw, 35);
-// //---------------------------------------End of Matrix -----------------------------------------------------------
-
-
 // select the dropdown
 let dropdown = d3.selectAll("#dropdown").attr("selected", "selected");
 
@@ -91,7 +36,10 @@ function makeBar1(data, category) {
     x: data.bar1_data.map(row => row.values).reverse(),
     y: data.bar1_data.map(row => row.labels).reverse(),
     type: "bar",
-    orientation: "h"
+    orientation: "h",
+    marker: {
+      color: "red"
+    }
   };
 
   // Data array
@@ -100,7 +48,51 @@ function makeBar1(data, category) {
   // Apply a title to the layout
   let layout = {
     title: `Top 10 ${category}`,
-    margin: { l: 500 }};
+    margin: { l: 250 },
+    plot_bgcolor: "3d3867", // Set the background color here
+    paper_bgcolor: "3d3867", // Set the border color here
+    titlefont: {
+      color: "white" // Set the title color here
+    }
+    
+  };
+  
+  if (category === "genre") {
+    layout.title = `The genres with the most amount of titles`;
+
+    layout.xaxis = {
+      title: "# of Titles in Genre",
+      color: "white"
+    };
+    layout.yaxis = {
+      title: "Genre",
+      color: "white"
+    };
+  } else if (category === "rating") {
+    layout.title = `The titles with the highest ratings`;
+    layout.xaxis = {
+      title: "Rating",
+      color: "white"
+    };
+    layout.yaxis = {
+      title: "Title",
+      color: "white"
+    };
+  } else if (category === "plays") {
+    layout.title = `The titles with the most amount of plays`;
+
+    layout.xaxis = {
+      title: "# of Times Played",
+      color: "white"
+    };
+    layout.yaxis = {
+      title: "Title",
+      color: "white"
+    };
+
+    // Adjust the margin to 500 if the category is "plays"
+    layout.margin.l = 275;
+  }
 
   // Render the plot to the div tag with id "plot"
   Plotly.newPlot("bar1", traces, layout);
@@ -132,16 +124,66 @@ function makeBar2(data,category) {
       x: data.bar2_data.map(row => row.values).reverse(),
       y: data.bar2_data.map(row => row.labels).reverse(),
       type: "bar",
-      orientation: "h"
+      orientation: "h",
+      marker: {
+        color: "red"
+      }
     };
   
     // Data array
     let traces = [trace];
+    
+      // Apply a title to the layout
+      let layout = {
+        title: `Bottom 10 ${category}`,
+        margin: { l: 200 },
+        plot_bgcolor: "3d3867", // Set the background color here
+        paper_bgcolor: "3d3867", // Set the border color here
+        titlefont: {
+          color: "white" // Set the title color here
+        }
+      };
   
-    // Apply a title to the layout
-    let layout = {
-      title: `Bottom 10 ${category}`,
-      margin: { l: 500 }};
+    // Apply a title and labels to the layout
+    if (category === "genre") {
+      layout.title = `The genres with the least amount of titles`;
+
+      layout.xaxis = {
+        title: "# of Titles in Genre",
+        color: "white"
+      };
+      layout.yaxis = {
+        title: "Genre",
+        color: "white"
+      };
+    } else if (category === "rating") {
+      layout.title = `The titles with the lowest ratings`;
+
+      layout.xaxis = {
+        title: "Rating",
+        color: "white"
+      };
+      layout.yaxis = {
+        title: "Title",
+        color: "white"
+      };
+    } else if (category === "plays") {
+      layout.title = `The titles with the least amount of plays`;
+      layout.xaxis = {
+        title: "# of Times Played",
+        color: "white"
+      };
+      layout.yaxis = {
+        title: "Title",
+        color: "white"
+      };
+      
+      // Adjust the margin to 500 if the category is "plays"
+      layout.margin.l = 300;
+    }
+    
+
+    
   
     // Render the plot to the div tag with id "plot"
     Plotly.newPlot("bar2", traces, layout);
@@ -150,3 +192,4 @@ function makeBar2(data,category) {
 
 // INITIALIZE plot on page load
 doWork();
+

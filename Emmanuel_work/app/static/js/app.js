@@ -67,7 +67,7 @@ function makeMap(data) {
     let location = [latitude, longitude];
 
     // Add a new marker to the cluster group, and bind a popup.
-    let marker = L.marker(location).bindPopup(`<h3>${row.Studio}</h3>`);
+    let marker = L.marker(location).bindPopup(`<h3>${row.Studio}</h3><h4>${row.Country}</h4><h5><a href="${row["Website"]}" target = "_blank">${row["Website"]}</a></h5>`);
     markerLayer.addLayer(marker);
 
     // for the heatmap
@@ -112,7 +112,10 @@ function makeBar(data) {
     x: data.bar_data.map(row => row.num_studios).reverse(),
     y: data.bar_data.map(row => row.Country).reverse(),
     type: "bar",
-    orientation: "h"
+    orientation: "h",
+    marker: {
+      color: "red"
+    }
   };
 
   // Data array
@@ -121,7 +124,25 @@ function makeBar(data) {
   // Apply a title to the layout
   let layout = {
     title: `Gaming Studios Per Country`,
-    margin: { l: 200 }};
+    margin: { l: 100 },
+    
+    plot_bgcolor: "3d3867", // Set the background color here
+    paper_bgcolor: "3d3867", // Set the border color here
+    titlefont: {
+      color: "white" // Set the title color here
+    }
+  };
+
+    layout.xaxis = {
+      title: "# of Studios",
+      color: "white"
+
+    };
+    layout.yaxis = {
+      title: "Country",
+      color: "white"
+
+    };
 
   // Render the plot to the div tag with id "plot"
   Plotly.newPlot("bar", traces, layout);
@@ -134,7 +155,7 @@ function makeMeta(data) {
 
   //loop through each key in the dictionary 
  
-  for (let i = 0; i < 5; i++){
+  for (let i = 0; i < 10; i++){
     let row = data.map_data[i];
     panel.append("p").text(`Studio: ${row["Studio"]}`);
     panel.append("p").text(`Country: ${row["Country"]}`);
