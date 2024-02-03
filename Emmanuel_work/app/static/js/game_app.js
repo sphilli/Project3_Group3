@@ -117,78 +117,79 @@ function makeMeta(data) {
   }
 }
 
-function makeBar2(data,category) {
-
-    // Trace for the Data
-    let trace = {
-      x: data.bar2_data.map(row => row.values).reverse(),
-      y: data.bar2_data.map(row => row.labels).reverse(),
-      type: "bar",
-      orientation: "h",
-      marker: {
-        color: "red"
-      }
-    };
-  
-    // Data array
-    let traces = [trace];
-    
-      // Apply a title to the layout
-      let layout = {
-        title: `Bottom 10 ${category}`,
-        margin: { l: 200 },
-        plot_bgcolor: "3d3867", // Set the background color here
-        paper_bgcolor: "3d3867", // Set the border color here
-        titlefont: {
-          color: "white" // Set the title color here
-        }
-      };
-  
-    // Apply a title and labels to the layout
-    if (category === "genre") {
-      layout.title = `The genres with the least amount of titles`;
-
-      layout.xaxis = {
-        title: "# of Titles in Genre",
-        color: "white"
-      };
-      layout.yaxis = {
-        title: "Genre",
-        color: "white"
-      };
-    } else if (category === "rating") {
-      layout.title = `The titles with the lowest ratings`;
-
-      layout.xaxis = {
-        title: "Rating",
-        color: "white"
-      };
-      layout.yaxis = {
-        title: "Title",
-        color: "white"
-      };
-    } else if (category === "plays") {
-      layout.title = `The titles with the least amount of plays`;
-      layout.xaxis = {
-        title: "# of Times Played",
-        color: "white"
-      };
-      layout.yaxis = {
-        title: "Title",
-        color: "white"
-      };
-      
-      // Adjust the margin to 500 if the category is "plays"
-      layout.margin.l = 300;
+function makeBar2(data, category) {
+  // Trace for the Data
+  let trace = {
+    x: data.bar2_data.map(row => row.values).reverse(),
+    y: data.bar2_data.map(row => row.labels).reverse(),
+    type: "bar",
+    orientation: "h",
+    marker: {
+      color: "red"
     }
-    
+  };
 
-    
-  
-    // Render the plot to the div tag with id "plot"
-    Plotly.newPlot("bar2", traces, layout);
-  
+  // Data array
+  let traces = [trace];
+
+  // Apply a title to the layout
+  let layout = {
+    title: `Bottom 10 ${category}`,
+    margin: { l: 200 },
+    plot_bgcolor: "3d3867", // Set the background color here
+    paper_bgcolor: "3d3867", // Set the border color here
+    titlefont: {
+      color: "white" // Set the title color here
+    }
+  };
+
+  // Apply a title and labels to the layout
+  if (category === "genre") {
+    layout.title = `The genres with the least amount of titles`;
+    layout.xaxis = {
+      title: "# of Titles in Genre",
+      color: "white"
+    };
+    layout.yaxis = {
+      title: "Genre",
+      color: "white"
+    };
+    document.getElementById("genre-paragraph").style.display = "block";
+    document.getElementById("rating-paragraph").style.display = "none";
+    document.getElementById("plays-paragraph").style.display = "none";
+  } else if (category === "rating") {
+    layout.title = `The titles with the lowest ratings`;
+    layout.xaxis = {
+      title: "Rating",
+      color: "white"
+    };
+    layout.yaxis = {
+      title: "Title",
+      color: "white"
+    };
+    document.getElementById("genre-paragraph").style.display = "none";
+    document.getElementById("rating-paragraph").style.display = "block";
+    document.getElementById("plays-paragraph").style.display = "none";
+  } else if (category === "plays") {
+    layout.title = `The titles with the least amount of plays`;
+    layout.xaxis = {
+      title: "# of Times Played",
+      color: "white"
+    };
+    layout.yaxis = {
+      title: "Title",
+      color: "white"
+    };
+    layout.margin.l = 300;
+    document.getElementById("genre-paragraph").style.display = "none";
+    document.getElementById("rating-paragraph").style.display = "none";
+    document.getElementById("plays-paragraph").style.display = "block";
   }
+
+  // Render the plot to the div tag with id "bar2"
+  Plotly.newPlot("bar2", traces, layout);
+}
+
 
 // INITIALIZE plot on page load
 doWork();
