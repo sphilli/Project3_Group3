@@ -66,9 +66,16 @@ function makeMap(data) {
     let longitude = row.longitude;
     let location = [latitude, longitude];
 
-    // Add a new marker to the cluster group, and bind a popup.
-    let marker = L.marker(location).bindPopup(`<h3>${row.Studio}</h3><h4>${row.Country}</h4><h5><a href="${row["Website"]}" target = "_blank">${row["Website"]}</a></h5>`);
-    markerLayer.addLayer(marker);
+// Add a new marker to the cluster group, and bind a popup.
+let marker = L.marker(location).bindPopup(`<h3>${row.Studio}</h3><h4>${row.Country}</h4><h5><a href="${row["Website"]}" target = "_blank">${row["Website"]}</a></h5>`);
+
+// Add event listener to the marker
+marker.on('click', function(e) {
+  // Zoom in to the marker's location
+  myMap.setView(e.latlng, 10);
+});
+
+markerLayer.addLayer(marker);
 
     // for the heatmap
     markers.push(location);
@@ -81,7 +88,7 @@ function makeMap(data) {
   // Create a map object, and set the default layers.
   let myMap = L.map("map", {
     center: [53.649024, 41.290197],
-    zoom: 3.75,
+    zoom: 3.5,
     layers: [street, markerLayer]
   });
 
@@ -164,6 +171,8 @@ function makeMeta(data) {
 
   }
 }
+
+
 
 // INITIALIZE plot on page load
 doWork();

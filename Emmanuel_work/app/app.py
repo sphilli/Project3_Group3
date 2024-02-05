@@ -12,6 +12,10 @@ sqlHelper = SQLHelper() # initialize the database helper
 # home page
 @app.route("/")
 def home_page():
+    return render_template("home.html")
+
+@app.route("/index")
+def map_page():
     return render_template("index.html")
 
 # game titles page
