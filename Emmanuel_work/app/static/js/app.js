@@ -67,13 +67,14 @@ function makeMap(data) {
     let location = [latitude, longitude];
 
 // Add a new marker to the cluster group, and bind a popup.
-let marker = L.marker(location).bindPopup(`<h3>${row.Studio}</h3><h4>${row.Country}</h4><h5><a href="${row["Website"]}" target = "_blank">${row["Website"]}</a></h5>`);
 
-// Add event listener to the marker
-marker.on('click', function(e) {
-  // Zoom in to the marker's location
-  myMap.setView(e.latlng, 10);
-});
+let marker = L.marker(location).bindPopup(`<h3>${row.Studio}</h3><h4>${row.Country}</h4><h5><a href="#" onclick="window.open('${row["Website"]}', '_blank'); return false;">${row["Website"]}</a></h5>`);
+
+// // Add event listener to the marker
+// marker.on('click', function(e) {
+//   // Zoom in to the marker's location
+//   myMap.setView(e.latlng, 10);
+// });
 
 markerLayer.addLayer(marker);
 
