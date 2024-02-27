@@ -1,9 +1,9 @@
 # Project3_Group3
 
 Project Members:
-Shauntel
-Shanara
-Emmanuel
+Shauntel,
+Shanara,
+Emmanuel.
 
 Summary:
 We took 2 datasets that related to video games from Kaggle.com and proceeded to clean and engineer them in preparation for importing to SQL. After Some light SQL coding, we managed to route everything into 
